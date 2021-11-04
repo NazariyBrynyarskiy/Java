@@ -1,0 +1,66 @@
+package com.company;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class GUI extends JFrame{
+    private JButton button1 = new JButton("+");
+    private JButton button2 = new JButton("-");
+    private JButton button3 = new JButton("x");
+    private JButton button4 = new JButton("/");
+
+    private JTextField field1 = new JTextField("", 5);
+    private JLabel label1 = new JLabel("Введіть 1 число: ");
+    private JTextField field2 = new JTextField("", 5);
+    private JLabel label2 = new JLabel("Введіть 2 число: ");
+
+    public GUI(){
+     super("Calculator");
+     this.setBounds(600, 200, 300, 150);
+     this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+     Container container = this.getContentPane();
+     container.setLayout(new GridLayout(4, 2, 2, 2));
+     container.add(label1);
+     container.add(label2);
+     container.add(field1);
+     container.add(field2);
+
+        ButtonGroup group = new ButtonGroup();
+    button1.addActionListener(new ButtonEventListener1());
+    button2.addActionListener(new ButtonEventListener2());
+    button3.addActionListener(new ButtonEventListener3());
+    button4.addActionListener(new ButtonEventListener4());
+
+     container.add(button1);
+     container.add(button2);
+     container.add(button3);
+     container.add(button4);
+
+    }
+    class ButtonEventListener1 implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            float q = Float.parseFloat(field1.getText()) + Float.parseFloat(field2.getText());
+            JOptionPane.showMessageDialog(null, q, "Results", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+    class ButtonEventListener2 implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            float q = Float.parseFloat(field1.getText()) - Float.parseFloat(field2.getText());
+            JOptionPane.showMessageDialog(null, q, "Results", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+    class ButtonEventListener3 implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            float q = Float.parseFloat(field1.getText()) * Float.parseFloat(field2.getText());
+            JOptionPane.showMessageDialog(null, q, "Results", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+    class ButtonEventListener4 implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            float q = Float.parseFloat(field1.getText()) / Float.parseFloat(field2.getText());
+            JOptionPane.showMessageDialog(null, q, "Results", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+}
